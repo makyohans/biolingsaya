@@ -469,98 +469,111 @@
             transform: scale(1);
         }
 
-        /* Link Buttons */
-        .links-container {
-            padding: 40px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+/* Container utama untuk semua tombol link */
+.links-container {
+    margin-top: 40px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column; /* Tombol tersusun vertikal */
+    gap: 20px; /* Jarak antar tombol */
+    max-width: 600px; /* Lebar maksimum container */
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .link-button {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+/* Gaya dasar untuk setiap tombol link */
+.link-button {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Menandakan ini adalah elemen interaktif */
+    position: relative; /* Untuk posisi tombol salin */
+}
 
-        .link-button:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
+.link-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
 
-        .link-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
+/* Container untuk ikon (agar ikon berada di tengah vertikal) */
+.link-icon {
+    width: 50px; /* Lebar area ikon */
+    height: 50px; /* Tinggi area ikon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Mencegah ikon menyusut */
+    margin-right: 15px;
+}
 
-        .link-button:hover::before {
-            left: 100%;
-        }
+/* Gaya untuk gambar ikon di dalam link-icon */
+.link-icon-img {
+    width: 100%; /* Gambar akan mengisi container .link-icon */
+    height: 100%;
+    object-fit: contain; /* Pastikan gambar terlihat utuh */
+    border-radius: 8px; /* Jika ingin sedikit membulatkan sudut gambar ikon */
+}
 
-        .link-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #4FC3F7, #29B6F6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
+/* Konten teks (Judul dan Deskripsi) */
+.link-content {
+    flex-grow: 1; /* Memungkinkan konten ini mengisi ruang yang tersisa */
+}
 
-        .link-content {
-            flex: 1;
-        }
+.link-title {
+    margin: 0;
+    font-size: 1.3em;
+    color: #333;
+}
 
-        .link-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 0 5px 0;
-        }
+.link-desc {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
 
-        .link-desc {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin: 0;
-        }
+/* Tombol Salin */
+.copy-btn {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Mencegah tombol salin menyusut */
+    margin-left: 15px; /* Jarak dari konten teks */
+}
 
-        .copy-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            color: currentColor;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
+.copy-btn:hover {
+    background-color: #d0d0d0;
+}
 
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
+/* Toast Notification (pesan sukses copy) */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
 
         /* Overlay untuk sidebar */
         .overlay {
@@ -752,47 +765,57 @@
     </div>
    </div>
   </div><!-- Link Buttons -->
-  <div class="links-container">
-   <div class="link-button" data-url="https://instagram.com/username">
-    <div class="link-icon">
-     📷
+<div class="links-container">
+    
+    <div class="link-button" data-url="https://instagram.com/username">
+        <div class="link-icon">
+            <img src="assets/icons/instagram-icon.png" alt="Instagram Icon" class="link-icon-img">
+        </div>
+        <div class="link-content">
+            <h2 class="link-title" id="link1Title">Instagram</h2>
+            <h4 class="link-desc" id="link1Desc">Follow Instagram saya</h4>
+        </div>
+        <button class="copy-btn" title="Salin Link">📋</button>
     </div>
-    <div class="link-content">
-     <h2 class="link-title" id="link1Title">Instagram</h2>
-     <h4 class="link-desc" id="link1Desc">Follow Instagram saya</h4>
-    </div><button class="copy-btn" title="Salin Link">📋</button>
-   </div>
-   <div class="link-button" data-url="https://youtube.com/channel">
-    <div class="link-icon">
-     🎥
+    
+    <div class="link-button" data-url="https://youtube.com/channel">
+        <div class="link-icon">
+            <img src="assets/icons/youtube-icon.png" alt="YouTube Icon" class="link-icon-img">
+        </div>
+        <div class="link-content">
+            <h2 class="link-title" id="link2Title">YouTube</h2>
+            <h4 class="link-desc" id="link2Desc">Subscribe channel saya</h4>
+        </div>
+        <button class="copy-btn" title="Salin Link">📋</button>
     </div>
-    <div class="link-content">
-     <h2 class="link-title" id="link2Title">YouTube</h2>
-     <h4 class="link-desc" id="link2Desc">Subscribe channel saya</h4>
-    </div><button class="copy-btn" title="Salin Link">📋</button>
-   </div>
-   <div class="link-button" data-url="https://wa.me/6281234567890">
-    <div class="link-icon">
-     💬
+    
+    <div class="link-button" data-url="https://wa.me/6281234567890">
+        <div class="link-icon">
+            <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp Icon" class="link-icon-img">
+        </div>
+        <div class="link-content">
+            <h2 class="link-title" id="link3Title">WhatsApp</h2>
+            <h4 class="link-desc" id="link3Desc">Chat dengan saya</h4>
+        </div>
+        <button class="copy-btn" title="Salin Link">📋</button>
     </div>
-    <div class="link-content">
-     <h2 class="link-title" id="link3Title">WhatsApp</h2>
-     <h4 class="link-desc" id="link3Desc">Chat dengan saya</h4>
-    </div><button class="copy-btn" title="Salin Link">📋</button>
-   </div>
-   <div class="link-button" data-url="https://website.com">
-    <div class="link-icon">
-     🌐
+    
+    <div class="link-button" data-url="https://website.com">
+        <div class="link-icon">
+            <img src="assets/icons/website-icon.png" alt="Website Icon" class="link-icon-img">
+        </div>
+        <div class="link-content">
+            <h2 class="link-title" id="link4Title">Website</h2>
+            <h4 class="link-desc" id="link4Desc">Kunjungi website saya</h4>
+        </div>
+        <button class="copy-btn" title="Salin Link">📋</button>
     </div>
-    <div class="link-content">
-     <h2 class="link-title" id="link4Title">Website</h2>
-     <h4 class="link-desc" id="link4Desc">Kunjungi website saya</h4>
-    </div><button class="copy-btn" title="Salin Link">📋</button>
-   </div>
-  </div><!-- Toast Notification -->
-  <div class="toast" id="toast">
-   Link berhasil disalin!
-  </div>
+    
+</div>
+
+<div class="toast" id="toast">
+    Link berhasil disalin!
+</div>
   <script>
         // Default config
         const defaultConfig = {
