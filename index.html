@@ -689,6 +689,101 @@
                 font-size: 20px;
             }
         }
+
+   /* --- Gaya untuk Detail Web & Verifikasi --- */
+
+.web-details {
+    margin: 2px 10 2px 15;
+    text-align: center;
+}
+
+.website-name {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    /* Hilangkan font-size di sini agar kita bisa atur di .app-title */
+}
+
+/* Teks Nama Aplikasi dibuat BESAR dan KONSISTEN */
+.app-title {
+    font-size: 20px; /* Atur ukuran teks yang besar dan konsisten */
+    margin-right: 8px;
+    line-height: 1; /* Penting untuk menjaga tinggi agar centang sejajar */
+}
+
+/* Tanggal Terbit di bawah */
+.join-date {
+    font-size: 1.1em; /* Sedikit lebih besar dari teks normal */
+    color: #000000;
+    margin-top: 1px;
+}
+
+/* --- Centang Gerigi Hijau (Custom Verification Badge) --- */
+
+.verified-badge {
+    position: relative;
+    display: inline-block;
+    width: 10px; 
+    height: 10px;
+    margin-left: 5px;
+    color: white; /* Warna centang itu sendiri */
+}
+
+/* Elemen Utama Gerigi (Matahari) */
+.verified-badge::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    
+    /* Bentuk Gerigi (Border Radius dan Background) */
+    background: #2ecc71; /* Warna hijau solid */
+    border-radius: 50%;
+    
+    /* Efek Gerigi (Sunburst/Star Shape) */
+    /* Membuat bentuk seperti gerigi/matahari dengan box-shadow */
+    box-shadow: 
+        0 0 0 2px #2ecc71, /* Lingkaran luar (opsional) */
+        0 -10px 0 0 #2ecc71,  /* Atas */
+        0 10px 0 0 #2ecc71,   /* Bawah */
+        -10px 0 0 0 #2ecc71,  /* Kiri */
+        10px 0 0 0 #2ecc71,   /* Kanan */
+        -7px -7px 0 0 #2ecc71, /* Sudut TL */
+        7px 7px 0 0 #2ecc71,   /* Sudut BR */
+        -7px 7px 0 0 #2ecc71,  /* Sudut BL */
+        7px -7px 0 0 #2ecc71;  /* Sudut TR */
+    
+    /* Masking untuk menampilkan hanya bagian luar (gerigi) */
+    /* Catatan: Efek ini sangat kompleks, kita gunakan cara sederhana: */
+    /* Kita gunakan ikon Font Awesome 'fa-asterisk' (gerigi) jika tersedia di package Anda */
+    /* Namun, kita akan tetap menggunakan custom style yang menyerupai yang Anda minta */
+    
+    /* Kita fokuskan pada Animasi Rotasi untuk efek dinamis (opsional) */
+    /* animation: spin 4s linear infinite; */
+}
+
+/* Ikon Centang di Tengah */
+.verified-badge i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px; /* Ukuran centang */
+    z-index: 10;
+}
+
+/* Keyframes untuk Animasi Gerigi (Opsional: Jika ingin gerigi berputar) */
+/*
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+*/
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -830,6 +925,21 @@
 <div class="toast" id="toast">
     Link berhasil disalin!
 </div>
+
+<div class="web-details">
+    <h2 class="website-name">
+        <span class="app-title">NamaWEBSET Anda</span>
+        <span class="verified-badge" title="Telah Diverifikasi">
+            <i class="fas fa-check"></i> 
+        </span>
+    </h2>
+    
+    <p class="join-date">
+        Tanggal Terbit: <span id="creationDate">17 November 2025</span>
+    </p>
+</div>
+
+  
   <script>
         // Default config
         const defaultConfig = {
